@@ -1,7 +1,7 @@
 "use client";
 // @flow strict
 import { isValidEmail } from "@/utils/check-email";
-import axios from "axios";
+import emailjs from '@emailjs/browser';
 import { useState } from "react";
 import { TbMailForward } from "react-icons/tb";
 import { toast } from "react-toastify";
@@ -35,9 +35,17 @@ function ContactForm() {
 
     try {
       setIsLoading(true);
-      const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_APP_URL}/api/contact`,
-        userInput
+      
+      // Using EmailJS for client-side email sending
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: userInput.name,
+          from_email: userInput.email,
+          message: userInput.message,
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
       );
 
       toast.success("Message sent successfully!");
@@ -47,7 +55,8 @@ function ContactForm() {
         message: "",
       });
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      toast.error("Failed to send message. Please try again.");
+      console.error('EmailJS Error:', error);
     } finally {
       setIsLoading(false);
     };
