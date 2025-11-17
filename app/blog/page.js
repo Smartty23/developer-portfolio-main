@@ -4,14 +4,22 @@ import { personalData } from "@/utils/data/personal-data";
 import BlogCard from "../components/homepage/blog/blog-card";
 
 async function getBlogs() {
-  const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`)
+  try {
+    const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`, {
+      next: { revalidate: 3600 } // Cache for 1 hour
+    })
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
+    if (!res.ok) {
+      console.error('Failed to fetch blogs from dev.to');
+      return [];
+    }
+
+    const data = await res.json();
+    return data || [];
+  } catch (error) {
+    console.error('Error fetching blogs:', error);
+    return [];
   }
-
-  const data = await res.json();
-  return data;
 };
 
 async function page() {
@@ -31,10 +39,16 @@ async function page() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 lg:gap-8 xl:gap-10">
         {
-          blogs.map((blog, i) => (
-            blog?.cover_image &&
-            <BlogCard blog={blog} key={i} />
-          ))
+          blogs.length > 0 ? (
+            blogs.map((blog, i) => (
+              blog?.cover_image &&
+              <BlogCard blog={blog} key={i} />
+            ))
+          ) : (
+            <div className="col-span-full text-center py-10">
+              <p className="text-gray-600">No blogs found. Check back later!</p>
+            </div>
+          )
         }
       </div>
     </div>
