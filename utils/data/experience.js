@@ -7,9 +7,9 @@ export const experiences = [
   },
   {
     id: 2,
-    title: "FullStack Developer",
-    company: "Fiverr (freelance)",
-    duration: "(Jun 2024 - Present"
+    title: "Full Stack Developer",
+    company: "Silverkuun Loans - https://silverkuunloans.com",
+    duration: "(June 2020 - Present)"
   },
   {
     id: 3,
