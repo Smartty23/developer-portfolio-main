@@ -7,11 +7,6 @@ export const personalData = {
   phone: '(+234)806 2933 929',
   address: 'Behind High Prosper International college, Bwari, Abuja - 901101 ',
   github: 'https://github.com/Smartty23',
-  facebook: 'https://www.facebook.com/abusaid.riyaz/',
-  linkedIn: 'https://www.linkedin.com/in/abu-said-bd/',
-  twitter: 'https://twitter.com/said7388',
-  stackOverflow: 'https://stackoverflow.com/users/16840768/abu-said',
-  leetcode: "https://leetcode.com/said3812/",
   whatsapp: 'https://wa.me/2348062923229',
   resume: "https://drive.google.com/file/d/1I7_DyIuRLJmND-ACBDfM3eDYk3oHEiyn/view?usp=sharing",
   livePortfolio: "https://your-portfolio-site.com"
