@@ -8,6 +8,6 @@ export const personalData = {
   address: 'Behind High Prosper International college, Bwari, Abuja - 901101 ',
   github: 'https://github.com/Smartty23',
   whatsapp: 'https://wa.me/2348062923229',
-  resume: "https://drive.google.com/file/d/1I7_DyIuRLJmND-ACBDfM3eDYk3oHEiyn/view?usp=sharing",
+  resume: "https://drive.google.com/file/d/1HiMyN2bj7KRoFoFUp2FkMpVqT9bPAF4G/view?usp=sharing",
   livePortfolio: "https://your-portfolio-site.com"
 }
